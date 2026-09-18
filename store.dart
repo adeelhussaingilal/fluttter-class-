@@ -1,50 +1,72 @@
 void main() {
   String customerName = "Adeel";
   int age = 21;
+
   String item1 = "Oil";
   String item2 = "Rice";
   String item3 = "Suger";
-  String item4 = "tea";
-  String item5 = "ghee";
-  // quantity
+  String item4 = "Tea";
+  String item5 = "Ghee";
 
+  // Quantity
   int oil = 2;
   int rice = 5;
   int suger = 3;
   int tea = 1;
   int ghee = 2;
 
+  // Prices
   int p_oil = 520;
   int p_rice = 250;
   int p_suger = 330;
   int p_tea = 150;
   int p_ghee = 270;
 
+  // Calculate item totals
   int oiltotal = p_oil * oil;
   int ricetotal = p_rice * rice;
   int sugertotal = p_suger * suger;
   int teatotal = p_tea * tea;
   int gheetotal = p_ghee * ghee;
 
-  bool ismemember = true;
+  // Membership
+  bool ismember = true;
 
-  double? discount;
-
+  // Original bill
   int total = oiltotal + ricetotal + sugertotal + teatotal + gheetotal;
 
-  double ftotal;
-  if (total >= 5000) {
-    discount = total * 10 / 100;
-  } else if (total >= 10000) {
+  double discount = 0;
+
+  // Main discount
+  if (total >= 10000) {
     discount = total * 20 / 100;
+  } else if (total >= 5000) {
+    discount = total * 10 / 100;
   } else {
     discount = 0;
   }
-  double Total = total - discount;
-  if (ismemember && Total >= 5000) {
-    ftotal = Total * 5 / 100;
-  } else {
-    ftotal = Total - discount;
+
+  // Bill after main discount
+  double billAfterDiscount = total - discount;
+
+  // Additional member discount
+  double memberDiscount = 0;
+
+  if (ismember && billAfterDiscount > 5000) {
+    memberDiscount = billAfterDiscount * 5 / 100;
   }
-  print(ftotal);
+
+  // Final bill
+  double finalBill = billAfterDiscount - memberDiscount;
+
+  // Print bill
+  print("========== SHOPPING BILL ==========");
+  print("Customer Name: $customerName");
+  print("Age: $age");
+  print("Member: $ismember");
+  print("-----------------------------------");
+  print("Original Bill: Rs. $total");
+  print("Discount: Rs. ${discount + memberDiscount}");
+  print("Final Bill: Rs. $finalBill");
+  print("===================================");
 }
