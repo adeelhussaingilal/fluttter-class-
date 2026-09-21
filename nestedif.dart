@@ -36,24 +36,22 @@ void main() {
   int total = oiltotal + ricetotal + sugertotal + teatotal + gheetotal;
 
   double discount = 0;
+  double memberDiscount = 0;
+  double billAfterDiscount = total - discount;
 
   // Main discount
   if (total >= 10000) {
     discount = total * 20 / 100;
+    if (ismember && billAfterDiscount > 5000) {
+      memberDiscount = billAfterDiscount * 5 / 100;
+    }
   } else if (total >= 5000) {
     discount = total * 10 / 100;
+    if (ismember && billAfterDiscount > 5000) {
+      memberDiscount = billAfterDiscount * 5 / 100;
+    }
   } else {
     discount = 0;
-  }
-
-  // Bill after main discount
-  double billAfterDiscount = total - discount;
-
-  // Additional member discount
-  double memberDiscount = 0;
-
-  if (ismember && billAfterDiscount > 5000) {
-    memberDiscount = billAfterDiscount * 5 / 100;
   }
 
   // Final bill
